@@ -14,7 +14,8 @@ import {FormsModule} from '@angular/forms';
 import {AuthService} from './auth/auth.service';
 
 const appRoutes: Routes = [
-    {path: 'signup', component: SingupComponent}
+    {path: 'signup', component: SingupComponent},
+    {path: 'signin', component: SinginComponent}
 ];
 
 @NgModule({
@@ -25,7 +26,7 @@ const appRoutes: Routes = [
     ],
     imports: [
         BrowserModule,
-        AngularFireModule.initializeApp(environment.firebaseConfig),
+        // AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFireDatabaseModule,
         NgbModule,
         BrowserAnimationsModule,
