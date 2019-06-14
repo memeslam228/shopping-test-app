@@ -21,4 +21,8 @@ export class AppComponent implements OnInit {
             authDomain: 'fir-task-bb3fd.firebaseapp.com',
         });
     }
+
+    onLogout() {
+        this.authService.logout();
+    }
 }

@@ -9,7 +9,7 @@
     </ng-template>
     <div class="navbar-nav ml-auto" *ngIf="authService.isAuthenticated()">
         <a href="#" class="navbar-brand">Email</a>
-        <a routerLink="signin" class="nav-item nav-link">Logout</a>
+        <a class="nav-item nav-link" (click)="onLogout()" style="cursor: pointer;">Logout</a>
     </div>
 </nav>
 <hr>

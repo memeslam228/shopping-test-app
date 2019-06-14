@@ -10,6 +10,7 @@ export class AuthService {
     constructor(private router: Router) {
 
     }
+
     token: string;
 
     signupUser(email: string, password: string) {
@@ -43,7 +44,8 @@ export class AuthService {
     }
 
     logout() {
-
+        firebase.auth().signOut();
+        this.token = null;
     }
 
     isAuthenticated() {
