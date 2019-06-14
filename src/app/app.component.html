@@ -1,8 +1,15 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-secondary">
     <a href="#" class="navbar-brand">SHOPPING WEB APP</a>
-    <div class="navbar-nav ml-auto">
-        <a routerLink="signin" class="nav-item nav-link">Login</a>
-        <a routerLink="signup" class="nav-item nav-link">Register</a>
+
+    <ng-template [ngIf]="!authService.isAuthenticated()">
+        <div class="navbar-nav ml-auto">
+            <a routerLink="signin" class="nav-item nav-link">Login</a>
+            <a routerLink="signup" class="nav-item nav-link">Register</a>
+        </div>
+    </ng-template>
+    <div class="navbar-nav ml-auto" *ngIf="authService.isAuthenticated()">
+        <a href="#" class="navbar-brand">Email</a>
+        <a routerLink="signin" class="nav-item nav-link">Logout</a>
     </div>
 </nav>
 <hr>
@@ -18,7 +25,7 @@
             <button type="button" class="btn btn-block btn-outline-secondary">Cart</button>
         </div>
         <div class="col-3">
-            <button type="button" class="btn btn-block btn-outline-dark">Sign in/Admin</button>
+            <button type="button" class="btn btn-block btn-outline-dark">Admin</button>
         </div>
     </div>
 </div>

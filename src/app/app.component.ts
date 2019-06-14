@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import * as firebase from 'firebase';
+import {AuthService} from './auth/auth.service';
+
 
 @Component({
     selector: 'app-root',
@@ -8,6 +10,10 @@ import * as firebase from 'firebase';
 })
 export class AppComponent implements OnInit {
     title = 'FirebaseTask';
+
+    constructor(private authService: AuthService) {
+
+    }
 
     ngOnInit() {
         firebase.initializeApp({
