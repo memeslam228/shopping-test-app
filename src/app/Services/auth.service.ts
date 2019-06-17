@@ -1,31 +1,41 @@
 import {Injectable} from '@angular/core';
-import * as firebase from 'firebase';
 import {Router} from '@angular/router';
+import {AngularFireAuth} from '@angular/fire/auth';
 
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
-    constructor(private router: Router) {
-
+    constructor(private router: Router, public afAuth: AngularFireAuth) {
+        this.afAuth.authState.subscribe(user => {
+            if (user) {
+                this.userData = user; // Setting up user data in userData var
+                localStorage.setItem('user', JSON.stringify(this.userData));
+                JSON.parse(localStorage.getItem('user'));
+            } else {
+                localStorage.setItem('user', null);
+                JSON.parse(localStorage.getItem('user'));
+            }
+        });
     }
 
     token: string;
+    userData: any;
 
     signupUser(email: string, password: string) {
-        firebase.auth().createUserWithEmailAndPassword(email, password)
+        this.afAuth.auth.createUserWithEmailAndPassword(email, password)
             .catch(
                 error => console.log(error)
             );
     }
 
     singinUser(email: string, password: string) {
-        firebase.auth().signInWithEmailAndPassword(email, password)
+        this.afAuth.auth.signInWithEmailAndPassword(email, password)
             .then(
                 response => {
                     this.router.navigate(['/']);
-                    firebase.auth().currentUser.getIdToken()
+                    this.afAuth.auth.currentUser.getIdToken()
                         .then(
                             (token: string) => this.token = token
                         );
@@ -36,7 +46,7 @@ export class AuthService {
     }
 
     getToken() {
-        firebase.auth().currentUser.getIdToken()
+        this.afAuth.auth.currentUser.getIdToken()
             .then(
                 (token: string) => this.token = token
             );
@@ -44,15 +54,16 @@ export class AuthService {
     }
 
     logout() {
-        firebase.auth().signOut();
+        this.afAuth.auth.signOut();
+        localStorage.removeItem('user');
         this.token = null;
     }
 
     isAuthenticated() {
-        return this.token != null;
+        return this.afAuth.auth.currentUser != null;
     }
 
     getEmail() {
-       return firebase.auth().currentUser.email;
+        return this.afAuth.auth.currentUser.email;
     }
 }

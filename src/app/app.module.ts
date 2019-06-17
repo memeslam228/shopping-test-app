@@ -6,6 +6,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 
 import {AngularFireDatabaseModule} from 'angularfire2/database';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import {environment} from '../environments/environment';
 
 import {AppComponent} from './app.component';
 import {SinginComponent} from './auth/singin/singin.component';
@@ -16,6 +19,7 @@ const appRoutes: Routes = [
     {path: 'signup', component: SingupComponent},
     {path: 'signin', component: SinginComponent}
 ];
+
 // {path: 'signin', component: SinginComponent, canActivate: [AuthGuard]}
 @NgModule({
     declarations: [
@@ -28,6 +32,9 @@ const appRoutes: Routes = [
         AngularFireDatabaseModule,
         NgbModule,
         BrowserAnimationsModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFireAuthModule,
+
         FormsModule,
         RouterModule.forRoot(appRoutes)
     ],
