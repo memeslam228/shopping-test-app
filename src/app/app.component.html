@@ -8,7 +8,7 @@
         </div>
     </ng-template>
     <div class="navbar-nav ml-auto" *ngIf="authService.isAuthenticated()">
-        <a href="#" class="navbar-brand">Email</a>
+        <a href="#" class="navbar-brand">{{ authService.getEmail() }}</a>
         <a class="nav-item nav-link" (click)="onLogout()" style="cursor: pointer;">Logout</a>
     </div>
 </nav>

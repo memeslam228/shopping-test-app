@@ -51,4 +51,8 @@ export class AuthService {
     isAuthenticated() {
         return this.token != null;
     }
+
+    getEmail() {
+       return firebase.auth().currentUser.email;
+    }
 }

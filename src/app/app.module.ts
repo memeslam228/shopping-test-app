@@ -10,13 +10,13 @@ import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {AppComponent} from './app.component';
 import {SinginComponent} from './auth/singin/singin.component';
 import {SingupComponent} from './auth/singup/singup.component';
-import {AuthService} from './auth/auth.service';
+import {AuthService} from './Services/auth.service';
 
 const appRoutes: Routes = [
     {path: 'signup', component: SingupComponent},
     {path: 'signin', component: SinginComponent}
 ];
-
+// {path: 'signin', component: SinginComponent, canActivate: [AuthGuard]}
 @NgModule({
     declarations: [
         AppComponent,
