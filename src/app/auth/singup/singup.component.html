@@ -10,6 +10,8 @@
             <label for="password">Password</label>
             <input type="password" name="password" id="password" class="form-control" ngModel>
         </div>
-        <button class="btn btn-primary" type="submit" [disabled]="!f.valid" >Sign Up</button>
+        <button mat-raised-button class="btn" color="primary" type="submit" [disabled]="!f.valid">Sign Up</button>
     </form>
+    <hr>
+    <a routerLink="/signin" >Already have an account?  Sign In</a>
 </div>

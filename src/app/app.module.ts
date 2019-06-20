@@ -14,6 +14,7 @@ import {AppComponent} from './app.component';
 import {SinginComponent} from './auth/singin/singin.component';
 import {SingupComponent} from './auth/singup/singup.component';
 import {AuthService} from './Services/auth.service';
+import {MatButtonModule, MatIconModule} from '@angular/material';
 
 const appRoutes: Routes = [
     {path: 'signup', component: SingupComponent},
@@ -32,6 +33,8 @@ const appRoutes: Routes = [
         AngularFireDatabaseModule,
         NgbModule,
         BrowserAnimationsModule,
+        MatButtonModule,
+        MatIconModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFireAuthModule,
 

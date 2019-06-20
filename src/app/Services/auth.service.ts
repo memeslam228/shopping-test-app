@@ -57,6 +57,7 @@ export class AuthService {
         this.afAuth.auth.signOut();
         localStorage.removeItem('user');
         this.token = null;
+        this.router.navigate(['/signin']);
     }
 
     isAuthenticated() {
