@@ -1,6 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
@@ -13,20 +12,21 @@ import {environment} from '../environments/environment';
 import {AppComponent} from './app.component';
 import {SinginComponent} from './auth/singin/singin.component';
 import {SingupComponent} from './auth/singup/singup.component';
-import {AuthService} from './Services/auth.service';
-import {MatButtonModule, MatIconModule} from '@angular/material';
+import {AuthService} from './Services/auth/auth.service';
+import {MatButtonModule, MatDialogModule, MatFormFieldModule, MatIconModule} from '@angular/material';
+import {ProductItemsListComponent} from './item/product-items-list/product-items-list.component';
+import {AdminItemsListComponent} from './item/admin-items-list/admin-items-list.component';
+import {AppRoutingModule} from './app-routing.module';
+import {RouterModule} from '@angular/router';
 
-const appRoutes: Routes = [
-    {path: 'signup', component: SingupComponent},
-    {path: 'signin', component: SinginComponent}
-];
 
-// {path: 'signin', component: SinginComponent, canActivate: [AuthGuard]}
 @NgModule({
     declarations: [
         AppComponent,
         SinginComponent,
-        SingupComponent
+        SingupComponent,
+        ProductItemsListComponent,
+        AdminItemsListComponent,
     ],
     imports: [
         BrowserModule,
@@ -37,9 +37,11 @@ const appRoutes: Routes = [
         MatIconModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFireAuthModule,
-
         FormsModule,
-        RouterModule.forRoot(appRoutes)
+        AppRoutingModule,
+        RouterModule,
+        MatFormFieldModule,
+        MatDialogModule
     ],
     providers: [AuthService],
     bootstrap: [AppComponent]

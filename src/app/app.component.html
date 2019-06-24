@@ -15,17 +15,17 @@
 <hr>
 <div class="container">
     <div class="row justify-content-around">
-        <div class="col-3">
-            <button mat-raised-button class="btn btn-block">Products</button>
+        <div class="col">
+            <button routerLink="products" mat-raised-button class="btn btn-block">Products</button>
         </div>
-        <div class="col-3">
+        <div class="col">
             <button mat-raised-button class="btn btn-block">Favourite</button>
         </div>
-        <div class="col-3">
+        <div class="col">
             <button mat-raised-button class="btn btn-block">Cart</button>
         </div>
-        <div class="col-3">
-            <button mat-raised-button class="btn btn-block" color="primary">Admin</button>
+        <div class="col" *ngIf="authService.isAuthenticated()">
+            <button routerLink="admin" mat-raised-button class="btn btn-block" color="primary">Admin</button>
         </div>
     </div>
 </div>
