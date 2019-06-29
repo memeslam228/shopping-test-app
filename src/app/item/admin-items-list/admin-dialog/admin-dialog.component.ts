@@ -1,6 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {AngularFireStorage} from '@angular/fire/storage';
+import {finalize} from 'rxjs/operators';
 
 @Component({
     selector: 'app-admin-dialog',
@@ -14,15 +16,19 @@ export class AdminDialogComponent implements OnInit {
     prodName: string;
     price: string;
     title: string;
+    imageUrl: string;
+    downloadUrl: any;
+    image: string;
+    selectedFile: any;
+    private ref: any;
+    private task: any;
+    private uploadProgress: any;
 
     constructor(
         private fb: FormBuilder,
         private dialogRef: MatDialogRef<AdminDialogComponent>,
+        private afStorage: AngularFireStorage,
         @Inject(MAT_DIALOG_DATA) data) {
-
-        this.description = data.description;
-        this.prodName = data.prodName;
-        this.price = data.price;
         this.title = data.title;
     }
 
@@ -31,15 +37,46 @@ export class AdminDialogComponent implements OnInit {
             description: [this.description, []],
             prodName: [this.prodName, []],
             price: [this.price, []],
+            imageUrl: [this.imageUrl, []],
         });
     }
 
     save() {
-        this.dialogRef.close(this.form.value);
+        if (this.imageUrl != null) {
+            this.form.patchValue({imageUrl: this.imageUrl});
+            this.dialogRef.close(this.form.value);
+        } else if (this.imageUrl == null) {
+            alert('Please, upload your picked image');
+        }
     }
 
     close() {
         this.dialogRef.close();
+    }
+
+    uploadToLocal(event) {
+        const reader = new FileReader();
+        reader.readAsDataURL(event.target.files[0]);
+        reader.onload = (e: any) => {
+            this.image = e.target.result;
+        };
+        this.selectedFile = event.target.files[0];
+    }
+
+    uploadToFS() {
+        const randomId = Math.random().toString(36).substring(2);
+        this.ref = this.afStorage.ref('/items/' + randomId);
+        this.task = this.ref.put(this.selectedFile);
+        this.uploadProgress = this.task.percentageChanges();
+        this.task.snapshotChanges().pipe(
+            finalize(() => {
+                this.downloadUrl = this.ref.getDownloadURL();
+                this.downloadUrl.subscribe(downloadURLResponse => {
+                    this.imageUrl = downloadURLResponse;
+                    console.log(this.imageUrl);
+                });
+            })
+        ).subscribe();
     }
 
 }

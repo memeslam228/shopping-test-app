@@ -31,12 +31,14 @@ export class AdminItemsListComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(
             data => {
-                console.log('Dialog output:', data);
                 if (data != null) {
                     this.item = new Item();
                     this.item.description = data.description;
                     this.item.name = data.prodName;
                     this.item.price = data.price;
+                    this.item.photoUrl = data.imageUrl;
+                    console.log(this.item.photoUrl);
+                    console.log(data.imageUrl);
                     this.itemCRUD.createItem(this.item);
                     console.log('Success');
                 }
