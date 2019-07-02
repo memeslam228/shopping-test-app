@@ -1,0 +1,41 @@
+<div *ngIf="item" style="z-index: 50">
+    <mat-expansion-panel>
+        <mat-expansion-panel-header class="row">
+            <div class="col-4">
+                <mat-panel-title>
+                    {{ item.name }}
+                </mat-panel-title>
+            </div>
+            <div class="col-4">
+                <mat-panel-description>
+                    <img src="{{ item.photoUrl }}" alt="Item-Picture" style="height: 45px; width: auto">
+                </mat-panel-description>
+            </div>
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-6">
+                        <button class="btn btn-block" mat-raised-button (click)="this.changeItem()">Save Changes
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <button class="btn btn-block" mat-raised-button color="warn" (click)="this.deleteItem()">Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </mat-expansion-panel-header>
+
+        <mat-form-field>
+            <input matInput #desc (keyup)="onChgDesc(desc.value)" placeholder="Description"
+                   value="{{ item.description }}">
+        </mat-form-field>
+        <hr>
+        <mat-form-field>
+            <input matInput #price (keyup)="onChgPrice(price.value)" placeholder="Price" value="{{ item.price }}">
+        </mat-form-field>
+        <hr>
+        <mat-form-field>
+            <input matInput #name (keyup)="onChgName(name.value)" placeholder="Name" value="{{ item.name }}">
+        </mat-form-field>
+    </mat-expansion-panel>
+</div>

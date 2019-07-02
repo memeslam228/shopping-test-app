@@ -3,6 +3,7 @@ import {MatDialog, MatDialogConfig} from '@angular/material';
 import {AdminDialogComponent} from './admin-dialog/admin-dialog.component';
 import {Item} from '../../Services/shopping-items/item';
 import {ItemCRUDService} from '../../Services/shopping-items/item-crud.service';
+import {map} from 'rxjs/operators';
 
 
 @Component({
@@ -11,7 +12,9 @@ import {ItemCRUDService} from '../../Services/shopping-items/item-crud.service';
     styleUrls: ['./admin-items-list.component.css']
 })
 export class AdminItemsListComponent implements OnInit {
+
     item: Item = new Item();
+    items: any;
 
     constructor(private dialog: MatDialog, private itemCRUD: ItemCRUDService) {
     }
@@ -24,7 +27,8 @@ export class AdminItemsListComponent implements OnInit {
         dialogConfig.autoFocus = true;
         dialogConfig.data = {
             id: 1,
-            title: 'New Product'
+            title: 'New Product',
+            description: 'Anime dly pasanov'
         };
 
         const dialogRef = this.dialog.open(AdminDialogComponent, dialogConfig);
@@ -37,8 +41,6 @@ export class AdminItemsListComponent implements OnInit {
                     this.item.name = data.prodName;
                     this.item.price = data.price;
                     this.item.photoUrl = data.imageUrl;
-                    console.log(this.item.photoUrl);
-                    console.log(data.imageUrl);
                     this.itemCRUD.createItem(this.item);
                     console.log('Success');
                 }
@@ -46,7 +48,19 @@ export class AdminItemsListComponent implements OnInit {
         );
     }
 
+    getItemsList() {
+        // Use snapshotChanges().map() to store the key
+        this.itemCRUD.getItemsList().snapshotChanges().pipe(
+            map(changes =>
+                changes.map(c => ({key: c.payload.key, ...c.payload.val()}))
+            )
+        ).subscribe(items => {
+            this.items = items;
+        });
+    }
+
     ngOnInit() {
+        this.getItemsList();
     }
 
 }

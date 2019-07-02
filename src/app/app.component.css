@@ -1,11 +1,16 @@
 footer {
+    display: block;
     position: fixed;
     bottom: 0;
     width: 100%;
 
-    -webkit-box-shadow: 0px 0px 30px rgba(0,0,0,.5);
-    -moz-box-shadow: 0px 0px 30px rgba(0,0,0,.5);
-    box-shadow: 0px 0px 30px rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 30px rgba(0,0,0,.5);
+    -moz-box-shadow: 0 0 30px rgba(0,0,0,.5);
+    box-shadow: 0 0 30px rgba(0,0,0,.5);
 
-    z-index: 100;
+    z-index: 9999;
+}
+
+router-outlet {
+    z-index: -5;
 }

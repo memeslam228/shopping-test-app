@@ -30,6 +30,7 @@ export class AdminDialogComponent implements OnInit {
         private afStorage: AngularFireStorage,
         @Inject(MAT_DIALOG_DATA) data) {
         this.title = data.title;
+        this.description = data.description;
     }
 
     ngOnInit() {
@@ -63,6 +64,7 @@ export class AdminDialogComponent implements OnInit {
         this.selectedFile = event.target.files[0];
     }
 
+
     uploadToFS() {
         const randomId = Math.random().toString(36).substring(2);
         this.ref = this.afStorage.ref('/items/' + randomId);
@@ -73,7 +75,6 @@ export class AdminDialogComponent implements OnInit {
                 this.downloadUrl = this.ref.getDownloadURL();
                 this.downloadUrl.subscribe(downloadURLResponse => {
                     this.imageUrl = downloadURLResponse;
-                    console.log(this.imageUrl);
                 });
             })
         ).subscribe();
