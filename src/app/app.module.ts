@@ -16,7 +16,7 @@ import {SinginComponent} from './auth/singin/singin.component';
 import {SingupComponent} from './auth/singup/singup.component';
 import {AuthService} from './Services/auth/auth.service';
 import {
-    MatButtonModule,
+    MatButtonModule, MatCardModule,
     MatDialogModule,
     MatDividerModule, MatExpansionModule,
     MatFormFieldModule,
@@ -32,6 +32,7 @@ import {RouterModule} from '@angular/router';
 import {AdminDialogComponent} from './item/admin-items-list/admin-dialog/admin-dialog.component';
 import {AdminItemDetailComponent} from './item/admin-items-list/admin-item-detail/admin-item-detail.component';
 import { FooterComponent } from './footer/footer.component';
+import { ProductItemDetailsComponent } from './item/product-items-list/product-item-details/product-item-details.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { FooterComponent } from './footer/footer.component';
         AdminDialogComponent,
         AdminItemDetailComponent,
         FooterComponent,
+        ProductItemDetailsComponent,
     ],
     imports: [
         CommonModule,
@@ -66,7 +68,8 @@ import { FooterComponent } from './footer/footer.component';
         AngularFireStorageModule,
         MatProgressBarModule,
         MatDividerModule,
-        MatExpansionModule
+        MatExpansionModule,
+        MatCardModule
     ],
     providers: [AuthService],
     bootstrap: [AppComponent],

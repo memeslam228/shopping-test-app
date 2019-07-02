@@ -1,0 +1,20 @@
+<div *ngIf="item">
+    <mat-card class="example-card">
+        <img mat-card-image height="300px" width="300px" src="{{ item.photoUrl }}" alt="{{ item.name }}">
+        <mat-card-content>
+            <p>
+                <b>Name:</b> {{ item.name }}
+            </p>
+            <p>
+                <b>Description:</b> {{ item.description }}
+            </p>
+            <p>
+                <b>Price:</b> {{ item.price }}
+            </p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button>Cart</button>
+            <button mat-button>Like</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
