@@ -2,6 +2,7 @@ import {Component, OnInit, Input} from '@angular/core';
 import {Item} from '../../../Services/shopping-items/item';
 import {ItemCRUDService} from '../../../Services/shopping-items/item-crud.service';
 import {AngularFireStorage} from '@angular/fire/storage';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
     selector: 'app-admin-item-detail',
@@ -15,7 +16,7 @@ export class AdminItemDetailComponent implements OnInit {
     priceThis: string;
     nameThis: string;
 
-    constructor(private itemCRUD: ItemCRUDService, private storage: AngularFireStorage) {
+    constructor(private toastr: ToastrService, private itemCRUD: ItemCRUDService, private storage: AngularFireStorage) {
     }
 
     ngOnInit() {
@@ -43,11 +44,13 @@ export class AdminItemDetailComponent implements OnInit {
         if (this.nameThis) {
             this.itemCRUD.updateItem(this.item.key, {name: this.nameThis});
         }
+        this.toastr.info('Item date was successfully changed!');
     }
 
     deleteItem() {
         this.storage.storage.refFromURL(this.item.photoUrl).delete();
         this.itemCRUD.deleteItem(this.item.key);
+        this.toastr.success('Item was successfully deleted!');
     }
 
 }

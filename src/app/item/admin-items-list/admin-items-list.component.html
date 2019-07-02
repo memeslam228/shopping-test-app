@@ -1,13 +1,15 @@
-<div class="row justify-content-center">
-    <div class="col-3">
-        <button class="btn btn-block" mat-raised-button (click)="this.openDialog()">Pick one</button>
-    </div>
-</div>
 <div class="container">
-    <h1>Items</h1>
-    <div *ngFor="let item of items">
-        <mat-accordion>
-            <app-admin-item-detail [item]='item'></app-admin-item-detail>
-        </mat-accordion>
+    <div class="row justify-content-center">
+        <div class="col-3">
+            <button class="btn btn-block" mat-raised-button (click)="this.openDialog()">Pick one</button>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Items</h1>
+        <div *ngFor="let item of items">
+            <mat-accordion>
+                <app-admin-item-detail [item]='item'></app-admin-item-detail>
+            </mat-accordion>
+        </div>
     </div>
 </div>

@@ -1,41 +1,36 @@
 <div *ngIf="item" style="z-index: 50">
     <mat-expansion-panel>
         <mat-expansion-panel-header class="row">
-            <div class="col-4">
-                <mat-panel-title>
-                    {{ item.name }}
-                </mat-panel-title>
-            </div>
-            <div class="col-4">
-                <mat-panel-description>
-                    <img src="{{ item.photoUrl }}" alt="Item-Picture" style="height: 45px; width: auto">
-                </mat-panel-description>
-            </div>
-            <div class="col-4">
-                <div class="row">
-                    <div class="col-6">
-                        <button class="btn btn-block" mat-raised-button (click)="this.changeItem()">Save Changes
-                        </button>
-                    </div>
-                    <div class="col-6">
-                        <button class="btn btn-block" mat-raised-button color="warn" (click)="this.deleteItem()">Delete
-                        </button>
-                    </div>
-                </div>
-            </div>
+            <mat-panel-title class="my-auto col-4">
+                {{ item.name }}
+            </mat-panel-title>
+            <mat-panel-description class="col-3 my-auto">
+                <img src="{{ item.photoUrl }}" alt="Item-Picture" style="height: 45px; width: auto">
+            </mat-panel-description>
+            <mat-panel-description class="col-4 my-auto">
+                <button class="btn btn-block" mat-raised-button color="warn" (click)="this.deleteItem()">Delete
+                </button>
+            </mat-panel-description>
         </mat-expansion-panel-header>
-
-        <mat-form-field>
-            <input matInput #desc (keyup)="onChgDesc(desc.value)" placeholder="Description"
-                   value="{{ item.description }}">
+        <mat-form-field class="w-75">
+            <textarea matInput #desc (keyup)="onChgDesc(desc.value)" placeholder="Description"
+                      value="{{ item.description }}"></textarea>
         </mat-form-field>
-        <hr>
-        <mat-form-field>
+        <br>
+        <mat-form-field class="w-75">
             <input matInput #price (keyup)="onChgPrice(price.value)" placeholder="Price" value="{{ item.price }}">
         </mat-form-field>
-        <hr>
-        <mat-form-field>
+        <br>
+        <mat-form-field class="w-75">
             <input matInput #name (keyup)="onChgName(name.value)" placeholder="Name" value="{{ item.name }}">
         </mat-form-field>
+        <br>
+        <div class="row">
+            <div class="col-4">
+                <button class="btn btn-block" mat-raised-button color="primary" (click)="this.changeItem()">Save Changes
+                </button>
+            </div>
+        </div>
     </mat-expansion-panel>
+    <mat-divider></mat-divider>
 </div>

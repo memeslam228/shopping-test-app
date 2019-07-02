@@ -3,6 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {finalize} from 'rxjs/operators';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
     selector: 'app-admin-dialog',
@@ -22,9 +23,10 @@ export class AdminDialogComponent implements OnInit {
     selectedFile: any;
     private ref: any;
     private task: any;
-    private uploadProgress: any;
+    uploadProgress: any;
 
     constructor(
+        private toastr: ToastrService,
         private fb: FormBuilder,
         private dialogRef: MatDialogRef<AdminDialogComponent>,
         private afStorage: AngularFireStorage,
@@ -46,8 +48,9 @@ export class AdminDialogComponent implements OnInit {
         if (this.imageUrl != null) {
             this.form.patchValue({imageUrl: this.imageUrl});
             this.dialogRef.close(this.form.value);
+            this.toastr.success('Your item was added', 'Success!');
         } else if (this.imageUrl == null) {
-            alert('Please, upload your picked image');
+            this.toastr.warning('Please, upload your picked image!');
         }
     }
 

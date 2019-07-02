@@ -27,8 +27,7 @@ export class AdminItemsListComponent implements OnInit {
         dialogConfig.autoFocus = true;
         dialogConfig.data = {
             id: 1,
-            title: 'New Product',
-            description: 'Anime dly pasanov'
+            title: 'New Product'
         };
 
         const dialogRef = this.dialog.open(AdminDialogComponent, dialogConfig);
@@ -42,7 +41,6 @@ export class AdminItemsListComponent implements OnInit {
                     this.item.price = data.price;
                     this.item.photoUrl = data.imageUrl;
                     this.itemCRUD.createItem(this.item);
-                    console.log('Success');
                 }
             }
         );

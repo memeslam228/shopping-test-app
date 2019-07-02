@@ -1,57 +1,62 @@
-<h2 mat-dialog-title>{{title}}</h2>
+<div class="container">
+    <h2 mat-dialog-title>{{title}}</h2>
 
-<mat-dialog-content [formGroup]="form">
-    <div style="width: 200px; height: 200px; margin: 15px; border: 1px solid">
-        <div *ngIf="image">
-            <img [src]="image" class="img-fluid" style="width:200px;height:200px;overflow:hidden" alt="Picked picture">
+    <mat-dialog-content [formGroup]="form">
+        <div class="mx-auto img" style="width: 200px; height: 200px; margin: 15px; border: 1px solid">
+            <div *ngIf="image">
+                <img [src]="image"
+                     alt="Picked picture">
+            </div>
         </div>
-    </div>
-    <input type="file" hidden #upload (change)="uploadToLocal($event)" accept=".png,.jpg"/>
-    <mat-progress-bar class="mt-2 mb-2" mode="determinate" max="100" [value]="(uploadProgress | async)"></mat-progress-bar>
+        <input type="file" hidden #upload (change)="uploadToLocal($event)" accept=".png,.jpg"/>
+        <mat-progress-bar class="mt-2 mb-2" mode="determinate"
+                          [value]="(uploadProgress | async)"></mat-progress-bar>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <button class="btn btn-block mat-raised-button" (click)="upload.click()">Choose</button>
+                </div>
+                <div class="col-6">
+                    <button class="btn btn-block mat-raised-button mat-primary" (click)="this.uploadToFS()">Upload
+                    </button>
+                </div>
+            </div>
+        </div>
+        <br>
+        <mat-form-field class="w-100">
+            <label>
+                <input matInput
+                       placeholder="Product Name"
+                       formControlName="prodName">
+            </label>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="w-100">
+                <textarea matInput
+                          placeholder="Description"
+                          formControlName="description">
+                </textarea>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="w-100">
+            <label>
+                <input matInput
+                       placeholder="Price"
+                       formControlName="price">
+            </label>
+        </mat-form-field>
+    </mat-dialog-content>
 
-    <div class="row justify-content-center">
+    <mat-dialog-actions class="row justify-content-center">
+
+
         <div class="col-6">
-            <button class="btn btn-block mat-raised-button" (click)="upload.click()">Choose</button>
+            <button class="btn btn-block mat-raised-button" (click)="this.close()">Close</button>
         </div>
         <div class="col-6">
-            <button class="btn btn-block mat-raised-button mat-primary" (click)="this.uploadToFS()">Upload</button>
+            <button class="btn btn-block mat-raised-button mat-primary" (click)="this.save()">Save</button>
         </div>
-    </div>
-    <br>
-    <mat-form-field>
-        <label>
-            <input matInput
-                   placeholder="Product Name"
-                   formControlName="prodName">
-        </label>
-    </mat-form-field>
-    <br>
-    <mat-form-field>
-        <label>
-            <input matInput
-                   placeholder="Description"
-                   formControlName="description">
-        </label>
-    </mat-form-field>
-    <br>
-    <mat-form-field>
-        <label>
-            <input matInput
-                   placeholder="Price"
-                   formControlName="price">
-        </label>
-    </mat-form-field>
-</mat-dialog-content>
-
-<mat-dialog-actions class="row justify-content-center">
 
 
-    <div class="col-6">
-        <button class="btn btn-block mat-raised-button" (click)="this.close()">Close</button>
-    </div>
-    <div class="col-6">
-        <button class="btn btn-block mat-raised-button mat-primary" (click)="this.save()">Save</button>
-    </div>
-
-
-</mat-dialog-actions>
+    </mat-dialog-actions>
+</div>

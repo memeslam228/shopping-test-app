@@ -1,4 +1,4 @@
-footer {
+.footer_ {
     display: block;
     position: fixed;
     bottom: 0;
@@ -14,3 +14,4 @@ footer {
 router-outlet {
     z-index: -5;
 }
+

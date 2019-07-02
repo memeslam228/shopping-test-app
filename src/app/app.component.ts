@@ -10,7 +10,7 @@ import {AuthService} from './Services/auth/auth.service';
 export class AppComponent implements OnInit {
     title = 'FirebaseTask';
 
-    constructor(private authService: AuthService) {
+    constructor(public authService: AuthService) {
 
     }
 
