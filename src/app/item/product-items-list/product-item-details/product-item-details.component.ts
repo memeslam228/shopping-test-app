@@ -21,18 +21,34 @@ export class ProductItemDetailsComponent implements OnInit {
     @Input()
     item: Item;
 
+    bool: boolean;
+
     ngOnInit() {
     }
 
 
     onFavourite() {
+        this.favourite.favouriteItems = JSON.parse(localStorage.getItem('favourite-items'));
+        this.bool = false;
         if (this.favourite.favouriteItems[0] == null) {
             this.favourite.favouriteItems[0] = this.item;
+            localStorage.setItem('favourite-items', JSON.stringify(this.favourite.favouriteItems));
+            this.toastr.success('Your item was added to favourite', 'Success!');
         } else {
-            this.favourite.favouriteItems.push(this.item);
+            // tslint:disable-next-line:prefer-for-of
+            for (let i = 0; i < this.favourite.favouriteItems.length; i++) {
+                if (this.favourite.favouriteItems[i].name === this.item.name) {
+                    this.bool = true;
+                }
+            }
+            if (this.bool) {
+                this.toastr.warning('This item was added before');
+            } else {
+                this.favourite.favouriteItems.push(this.item);
+                localStorage.setItem('favourite-items', JSON.stringify(this.favourite.favouriteItems));
+                this.toastr.success('Your item was added to favourite', 'Success!');
+            }
         }
-        localStorage.setItem('favourite-items', JSON.stringify(this.favourite.favouriteItems));
-        this.toastr.success('Your item was added to favourite', 'Success!');
     }
 
     onCart() {
