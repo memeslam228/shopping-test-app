@@ -19,10 +19,10 @@
             <button routerLink="products" mat-raised-button class="btn btn-block">Products</button>
         </div>
         <div class="col">
-            <button mat-raised-button class="btn btn-block">Favourite</button>
+            <button routerLink="favourites" mat-raised-button class="btn btn-block">Favourite</button>
         </div>
         <div class="col">
-            <button mat-raised-button class="btn btn-block">Cart</button>
+            <button routerLink="cart" mat-raised-button class="btn btn-block">Cart</button>
         </div>
         <div class="col" *ngIf="authService.isAuthenticated()">
             <button routerLink="admin" mat-raised-button class="btn btn-block" color="primary">Admin</button>

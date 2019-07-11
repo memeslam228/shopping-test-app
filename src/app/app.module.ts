@@ -33,7 +33,9 @@ import {AdminDialogComponent} from './item/admin-items-list/admin-dialog/admin-d
 import {AdminItemDetailComponent} from './item/admin-items-list/admin-item-detail/admin-item-detail.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProductItemDetailsComponent } from './item/product-items-list/product-item-details/product-item-details.component';
-
+import { ItemsFavouriteComponent } from './items-favourite/items-favourite.component';
+import { ItemsCartComponent } from './items-cart/items-cart.component';
+import { ItemsFavouriteDetailsComponent } from './items-favourite/items-favourite-details/items-favourite-details.component';
 
 @NgModule({
     declarations: [
@@ -46,6 +48,9 @@ import { ProductItemDetailsComponent } from './item/product-items-list/product-i
         AdminItemDetailComponent,
         FooterComponent,
         ProductItemDetailsComponent,
+        ItemsFavouriteComponent,
+        ItemsCartComponent,
+        ItemsFavouriteDetailsComponent,
     ],
     imports: [
         CommonModule,

@@ -1,13 +1,14 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {AngularFireAuth} from '@angular/fire/auth';
+import {ToastrService} from 'ngx-toastr';
 
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
-    constructor(private router: Router, public afAuth: AngularFireAuth) {
+    constructor(private router: Router, public afAuth: AngularFireAuth, private toastr: ToastrService) {
         this.afAuth.authState.subscribe(user => {
             if (user) {
                 this.userData = user; // Setting up user data in userData var
@@ -26,7 +27,7 @@ export class AuthService {
     signupUser(email: string, password: string) {
         this.afAuth.auth.createUserWithEmailAndPassword(email, password)
             .catch(
-                error => console.log(error)
+                error => this.toastr.error(error)
             );
     }
 
@@ -41,16 +42,12 @@ export class AuthService {
                         );
                 }
             ).catch(
-            error => console.log(error)
+            error => this.toastr.error(error)
         );
     }
 
-    getToken() {
-        this.afAuth.auth.currentUser.getIdToken()
-            .then(
-                (token: string) => this.token = token
-            );
-        return this.token;
+    getUid() {
+        return this.afAuth.auth.currentUser.uid;
     }
 
     logout() {
