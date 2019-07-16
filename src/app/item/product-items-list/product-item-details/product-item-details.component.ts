@@ -28,7 +28,9 @@ export class ProductItemDetailsComponent implements OnInit {
 
 
     onFavourite() {
-        this.favourite.favouriteItems = JSON.parse(localStorage.getItem('favourite-items'));
+        if (JSON.parse(localStorage.getItem('favourite-items'))) {
+            this.favourite.favouriteItems = JSON.parse(localStorage.getItem('favourite-items'));
+        }
         this.bool = false;
         if (this.favourite.favouriteItems[0] == null) {
             this.favourite.favouriteItems[0] = this.item;
