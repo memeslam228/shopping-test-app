@@ -36,6 +36,7 @@ import { ProductItemDetailsComponent } from './item/product-items-list/product-i
 import { ItemsFavouriteComponent } from './items-favourite/items-favourite.component';
 import { ItemsCartComponent } from './items-cart/items-cart.component';
 import { ItemsFavouriteDetailsComponent } from './items-favourite/items-favourite-details/items-favourite-details.component';
+import { ItemsCartDetailsComponent } from './items-cart/items-cart-details/items-cart-details.component';
 
 @NgModule({
     declarations: [
@@ -51,6 +52,7 @@ import { ItemsFavouriteDetailsComponent } from './items-favourite/items-favourit
         ItemsFavouriteComponent,
         ItemsCartComponent,
         ItemsFavouriteDetailsComponent,
+        ItemsCartDetailsComponent
     ],
     imports: [
         CommonModule,

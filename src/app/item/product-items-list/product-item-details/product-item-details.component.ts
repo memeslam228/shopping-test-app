@@ -1,9 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ToastrService} from 'ngx-toastr';
-import {ItemCRUDService} from '../../../Services/shopping-items/item-crud.service';
-import {AngularFireStorage} from '@angular/fire/storage';
 import {Item} from '../../../Services/shopping-items/item';
 import {ItemsFavouriteComponent} from '../../../items-favourite/items-favourite.component';
+import {ItemsCartComponent} from '../../../items-cart/items-cart.component';
 
 @Component({
     selector: 'app-product-item-details',
@@ -14,8 +13,7 @@ export class ProductItemDetailsComponent implements OnInit {
 
     constructor(private favourite: ItemsFavouriteComponent,
                 private toastr: ToastrService,
-                private itemCRUD: ItemCRUDService,
-                private storage: AngularFireStorage) {
+                private cart: ItemsCartComponent) {
     }
 
     @Input()
@@ -54,7 +52,10 @@ export class ProductItemDetailsComponent implements OnInit {
     }
 
     onCart() {
-        this.favourite.favouriteItems = [null];
-        localStorage.setItem('favourite-items', null);
+        if (this.cart.addToCard(this.item.key) === 'done') {
+            this.toastr.success('Your item was added to Cart', 'Success!');
+        } else {
+            this.toastr.warning('This item was added before');
+        }
     }
 }

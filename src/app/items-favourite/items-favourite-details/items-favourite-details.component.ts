@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Item} from '../../Services/shopping-items/item';
 import {ItemsFavouriteComponent} from '../items-favourite.component';
 import {ToastrService} from 'ngx-toastr';
+import {ItemsCartComponent} from '../../items-cart/items-cart.component';
 
 @Component({
     selector: 'app-items-favourite-details',
@@ -13,10 +14,18 @@ export class ItemsFavouriteDetailsComponent implements OnInit {
     @Input()
     item: Item;
 
-    constructor(private favourite: ItemsFavouriteComponent, private toastr: ToastrService) {
+    constructor(private favourite: ItemsFavouriteComponent, private toastr: ToastrService, private cart: ItemsCartComponent) {
     }
 
     ngOnInit() {
+    }
+
+    addCart() {
+        if (this.cart.addToCard(this.item.key) === 'done') {
+            this.toastr.success('Your item was added to Cart', 'Success!');
+        } else {
+            this.toastr.warning('This item was added before');
+        }
     }
 
     deleteItem() {

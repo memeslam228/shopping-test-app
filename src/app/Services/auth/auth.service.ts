@@ -8,6 +8,9 @@ import {ToastrService} from 'ngx-toastr';
     providedIn: 'root'
 })
 export class AuthService {
+    token: string;
+    userData: any;
+
     constructor(private router: Router, public afAuth: AngularFireAuth, private toastr: ToastrService) {
         this.afAuth.authState.subscribe(user => {
             if (user) {
@@ -21,15 +24,13 @@ export class AuthService {
         });
     }
 
-    token: string;
-    userData: any;
-
     signupUser(email: string, password: string) {
         this.afAuth.auth.createUserWithEmailAndPassword(email, password)
             .catch(
                 error => this.toastr.error(error)
             );
     }
+
 
     singinUser(email: string, password: string) {
         this.afAuth.auth.signInWithEmailAndPassword(email, password)
@@ -47,7 +48,8 @@ export class AuthService {
     }
 
     getUid() {
-        return this.afAuth.auth.currentUser.uid;
+        this.userData = JSON.parse(localStorage.getItem('user'));
+        return this.userData.uid;
     }
 
     logout() {

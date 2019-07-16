@@ -1,3 +1,10 @@
-<p>
-  items-cart works!
-</p>
+<div class="container mb-60">
+    <div class="row">
+
+    </div>
+    <div class="row">
+        <div *ngFor="let item of items" class="col-lg-4 col-md-6 col-12">
+            <app-items-cart-details [item]='item'></app-items-cart-details>
+        </div>
+    </div>
+</div>
