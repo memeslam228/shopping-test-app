@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {Item} from './item';
 import {AngularFireList, AngularFireDatabase} from '@angular/fire/database';
 import {ToastrService} from 'ngx-toastr';
+import {forEach} from '@angular/router/src/utils/collection';
+import {map} from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -27,6 +29,7 @@ export class ItemCRUDService {
     deleteItem(key: string): void {
         this.itemsRef.remove(key).catch(error => this.handleError(error));
     }
+
 
     getItemsList(): AngularFireList<Item> {
         return this.itemsRef;
