@@ -9,6 +9,7 @@ import {AdminItemsListComponent} from './item/admin-items-list/admin-items-list.
 import {AuthGuard} from './Services/auth/auth-guard.service';
 import {ItemsFavouriteComponent} from './items-favourite/items-favourite.component';
 import {ItemsCartComponent} from './items-cart/items-cart.component';
+import {ItemPageComponent} from './item-page/item-page.component';
 
 const appRoutes: Routes = [
     {path: 'signup', component: SingupComponent},
@@ -17,6 +18,7 @@ const appRoutes: Routes = [
     {path: 'admin', component: AdminItemsListComponent, canActivate: [AuthGuard]},
     {path: 'favourites', component: ItemsFavouriteComponent},
     {path: 'cart', component: ItemsCartComponent},
+    {path: 'item/:id', component: ItemPageComponent},
     {path: '**', component: ProductItemsListComponent}
 ];
 

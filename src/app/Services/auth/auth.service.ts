@@ -49,7 +49,7 @@ export class AuthService {
 
     getUid() {
         this.userData = JSON.parse(localStorage.getItem('user'));
-        return this.userData.uid;
+        return this.userData.uid || this.afAuth.auth.currentUser.uid;
     }
 
     logout() {

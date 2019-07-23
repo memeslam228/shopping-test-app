@@ -16,6 +16,7 @@ import {SinginComponent} from './auth/singin/singin.component';
 import {SingupComponent} from './auth/singup/singup.component';
 import {AuthService} from './Services/auth/auth.service';
 import {
+    MatAutocompleteModule,
     MatButtonModule, MatCardModule,
     MatDialogModule,
     MatDividerModule, MatExpansionModule,
@@ -37,6 +38,7 @@ import { ItemsFavouriteComponent } from './items-favourite/items-favourite.compo
 import { ItemsCartComponent } from './items-cart/items-cart.component';
 import { ItemsFavouriteDetailsComponent } from './items-favourite/items-favourite-details/items-favourite-details.component';
 import { ItemsCartDetailsComponent } from './items-cart/items-cart-details/items-cart-details.component';
+import { ItemPageComponent } from './item-page/item-page.component';
 
 @NgModule({
     declarations: [
@@ -52,7 +54,8 @@ import { ItemsCartDetailsComponent } from './items-cart/items-cart-details/items
         ItemsFavouriteComponent,
         ItemsCartComponent,
         ItemsFavouriteDetailsComponent,
-        ItemsCartDetailsComponent
+        ItemsCartDetailsComponent,
+        ItemPageComponent
     ],
     imports: [
         CommonModule,
@@ -76,7 +79,8 @@ import { ItemsCartDetailsComponent } from './items-cart/items-cart-details/items
         MatProgressBarModule,
         MatDividerModule,
         MatExpansionModule,
-        MatCardModule
+        MatCardModule,
+        MatAutocompleteModule
     ],
     providers: [AuthService],
     bootstrap: [AppComponent],
