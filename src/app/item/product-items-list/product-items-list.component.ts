@@ -12,7 +12,8 @@ import {Observable} from 'rxjs';
 })
 export class ProductItemsListComponent implements OnInit {
 
-    constructor(private itemCRUD: ItemCRUDService) { }
+    constructor(private itemCRUD: ItemCRUDService) {
+    }
 
 
     items: Item[];
@@ -30,7 +31,7 @@ export class ProductItemsListComponent implements OnInit {
             this.filteredItems = this.itemCtrl.valueChanges
                 .pipe(
                     startWith(''),
-                    map(state => state ? this._filterItems(state) : this.items.slice())
+                    map(item => item ? this._filterItems(item) : this.items.slice())
                 );
         });
     }
@@ -39,7 +40,7 @@ export class ProductItemsListComponent implements OnInit {
     private _filterItems(value: string): Item[] {
         const filterValue = value.toLowerCase();
 
-        return this.items.filter(state => state.name.toLowerCase().indexOf(filterValue) === 0);
+        return this.items.filter(item => item.name.toLowerCase().includes(filterValue));
     }
 
 
