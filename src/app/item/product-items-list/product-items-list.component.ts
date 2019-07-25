@@ -36,7 +36,6 @@ export class ProductItemsListComponent implements OnInit {
         });
     }
 
-
     private _filterItems(value: string): Item[] {
         const filterValue = value.toLowerCase();
 
@@ -85,10 +84,10 @@ export class ProductItemsListComponent implements OnInit {
 
     subSelected() {
         if (this.selected === 'fromEtoC') {
-            this.items.sort(this.sortBtoS);
+            this.items.sort(this.sortStoB);
         }
         if (this.selected === 'fromCtoE') {
-            this.items.sort(this.sortStoB);
+            this.items.sort(this.sortBtoS);
         }
         if (this.selected === 'A-Z') {
             this.items.sort(this.sortAZ);
