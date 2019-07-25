@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {ToastrService} from 'ngx-toastr';
+import {BadgeCounterService} from '../badge/badge-counter.service';
 
 
 @Injectable({
@@ -13,21 +14,29 @@ export class AuthService {
 
     constructor(private router: Router,
                 public afAuth: AngularFireAuth,
-                private toastr: ToastrService) {
+                private toastr: ToastrService,
+                private badge: BadgeCounterService) {
+
         this.afAuth.authState.subscribe(user => {
             if (user) {
                 this.userData = user; // Setting up user data in userData var
                 localStorage.setItem('user', JSON.stringify(this.userData));
-                JSON.parse(localStorage.getItem('user'));
             } else {
                 localStorage.setItem('user', null);
-                JSON.parse(localStorage.getItem('user'));
             }
         });
     }
 
     signupUser(email: string, password: string) {
         this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+            .then(
+                () => {
+                    this.userData = this.afAuth.auth.currentUser;
+                    localStorage.setItem('user', JSON.stringify(this.userData));
+                    this.router.navigate(['/']);
+                    this.badge.cartUpdate();
+                }
+            )
             .catch(
                 error => this.toastr.error(error)
             );
@@ -38,6 +47,9 @@ export class AuthService {
         this.afAuth.auth.signInWithEmailAndPassword(email, password)
             .then(
                 () => {
+                    this.userData = this.afAuth.auth.currentUser;
+                    localStorage.setItem('user', JSON.stringify(this.userData));
+                    this.badge.cartUpdate();
                     this.router.navigate(['/']);
                     this.afAuth.auth.currentUser.getIdToken()
                         .then(
@@ -51,7 +63,9 @@ export class AuthService {
 
     getUid() {
         this.userData = JSON.parse(localStorage.getItem('user'));
-        return this.userData.uid || this.afAuth.auth.currentUser.uid;
+        if (this.userData != null) {
+            return this.userData.uid;
+        }
     }
 
 
@@ -59,6 +73,7 @@ export class AuthService {
         this.afAuth.auth.signOut();
         localStorage.removeItem('user');
         this.token = null;
+        this.badge.cart = 0;
         this.router.navigate(['/signin']);
     }
 

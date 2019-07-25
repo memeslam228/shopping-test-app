@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AngularFireDatabase, AngularFireObject} from '@angular/fire/database';
 import {CartArray} from '../../items-cart/cart-array';
+import {AngularFireAuth} from '@angular/fire/auth';
 
 
 @Injectable({
@@ -12,10 +13,9 @@ export class BadgeCounterService {
     dbPath: string;
     idArray: string[] = [null];
     dbObject: AngularFireObject<CartArray> = null;
-    uId: any;
 
 
-    constructor(private db: AngularFireDatabase) {
+    constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
         this.cartUpdate();
         this.favouriteCount();
     }
@@ -35,9 +35,15 @@ export class BadgeCounterService {
         this.favourite = array.length;
     }
 
+    getUid() {
+        const uId = JSON.parse(localStorage.getItem('user'));
+        if (uId != null) {
+            return uId.uid;
+        }
+    }
+
     cartUpdate() {
-        this.uId = JSON.parse(localStorage.getItem('user'));
-        this.dbPath = '/users/' + this.uId.uid;
+        this.dbPath = '/users/' + this.getUid();
         this.dbObject = this.db.object(this.dbPath);
         this.dbObject.valueChanges().subscribe(c => {
             if (c != null) {
