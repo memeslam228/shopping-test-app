@@ -3,6 +3,7 @@ import {ToastrService} from 'ngx-toastr';
 import {Item} from '../../../Services/shopping-items/item';
 import {ItemsFavouriteComponent} from '../../../items-favourite/items-favourite.component';
 import {ItemsCartComponent} from '../../../items-cart/items-cart.component';
+import {BadgeCounterService} from '../../../Services/badge/badge-counter.service';
 
 @Component({
     selector: 'app-product-item-details',
@@ -13,7 +14,8 @@ export class ProductItemDetailsComponent implements OnInit {
 
     constructor(private favourite: ItemsFavouriteComponent,
                 private toastr: ToastrService,
-                private cart: ItemsCartComponent) {
+                private cart: ItemsCartComponent,
+                private badge: BadgeCounterService) {
     }
 
     @Input()
@@ -38,6 +40,7 @@ export class ProductItemDetailsComponent implements OnInit {
             this.favourite.favouriteItems[0] = this.item;
             localStorage.setItem('favourite-items', JSON.stringify(this.favourite.favouriteItems));
             this.toastr.success('Your item was added to favourite', 'Success!');
+            this.badge.favouriteInc();
         } else {
             // tslint:disable-next-line:prefer-for-of
             for (let i = 0; i < this.favourite.favouriteItems.length; i++) {
@@ -51,6 +54,7 @@ export class ProductItemDetailsComponent implements OnInit {
                 this.favourite.favouriteItems.push(this.item);
                 localStorage.setItem('favourite-items', JSON.stringify(this.favourite.favouriteItems));
                 this.toastr.success('Your item was added to favourite', 'Success!');
+                this.badge.favouriteInc();
             }
         }
     }

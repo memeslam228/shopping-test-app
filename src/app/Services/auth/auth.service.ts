@@ -11,7 +11,9 @@ export class AuthService {
     token: string;
     userData: any;
 
-    constructor(private router: Router, public afAuth: AngularFireAuth, private toastr: ToastrService) {
+    constructor(private router: Router,
+                public afAuth: AngularFireAuth,
+                private toastr: ToastrService) {
         this.afAuth.authState.subscribe(user => {
             if (user) {
                 this.userData = user; // Setting up user data in userData var
@@ -51,6 +53,7 @@ export class AuthService {
         this.userData = JSON.parse(localStorage.getItem('user'));
         return this.userData.uid || this.afAuth.auth.currentUser.uid;
     }
+
 
     logout() {
         this.afAuth.auth.signOut();

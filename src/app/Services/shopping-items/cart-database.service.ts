@@ -3,13 +3,14 @@ import {AngularFireDatabase, AngularFireList, AngularFireObject} from '@angular/
 import {CartArray} from '../../items-cart/cart-array';
 import {Item} from './item';
 import {map} from 'rxjs/operators';
+import {BadgeCounterService} from '../badge/badge-counter.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class CartDatabaseService {
 
-    constructor(private db: AngularFireDatabase) {
+    constructor(private db: AngularFireDatabase, private badge: BadgeCounterService) {
     }
 
     bool: boolean;
@@ -67,6 +68,7 @@ export class CartDatabaseService {
             this.idArray[0] = id;
             this.cartarray.cart = JSON.stringify(this.idArray);
             this.dbObject.set(this.cartarray);
+            this.badge.cartCount(this.idArray);
             return 'done';
         } else {
             // tslint:disable-next-line:prefer-for-of
@@ -82,11 +84,13 @@ export class CartDatabaseService {
                 }
             }
             if (this.bool === true) {
+                this.badge.cartCount(this.idArray);
                 return 'nbrUpdate';
             } else {
                 this.idArray.push(id);
                 this.cartarray.cart = JSON.stringify(this.idArray);
                 this.dbObject.update({cart: this.cartarray.cart});
+                this.badge.cartCount(this.idArray);
                 return 'done';
             }
         }
@@ -114,6 +118,7 @@ export class CartDatabaseService {
                 }
             }
         }
+        this.badge.cartCount(this.idArray);
         return itemms;
     }
 }

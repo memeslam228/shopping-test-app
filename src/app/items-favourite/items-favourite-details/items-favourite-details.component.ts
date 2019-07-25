@@ -3,6 +3,7 @@ import {Item} from '../../Services/shopping-items/item';
 import {ItemsFavouriteComponent} from '../items-favourite.component';
 import {ToastrService} from 'ngx-toastr';
 import {ItemsCartComponent} from '../../items-cart/items-cart.component';
+import {BadgeCounterService} from '../../Services/badge/badge-counter.service';
 
 @Component({
     selector: 'app-items-favourite-details',
@@ -15,7 +16,10 @@ export class ItemsFavouriteDetailsComponent implements OnInit {
     item: Item;
     number = '1';
 
-    constructor(private favourite: ItemsFavouriteComponent, private toastr: ToastrService, private cart: ItemsCartComponent) {
+    constructor(private favourite: ItemsFavouriteComponent,
+                private toastr: ToastrService,
+                private cart: ItemsCartComponent,
+                private badge: BadgeCounterService) {
     }
 
     ngOnInit() {
@@ -41,6 +45,7 @@ export class ItemsFavouriteDetailsComponent implements OnInit {
                 this.favourite.favouriteItems.splice(i, 1);
                 localStorage.setItem('favourite-items', JSON.stringify(this.favourite.favouriteItems));
                 this.toastr.info('Item was deleted from favourite!');
+                this.badge.favouriteDec();
             }
         }
     }

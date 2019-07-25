@@ -19,12 +19,12 @@
             <button routerLink="products" mat-raised-button class="btn btn-block">Products</button>
         </div>
         <div class="col-4 col-sm-3">
-            <button routerLink="favourites" mat-raised-button class="btn btn-block" [matBadge]="favourite"
+            <button routerLink="favourites" mat-raised-button class="btn btn-block" [matBadge]="this.counter.favourite"
                     matBadgeColor="primary">Favourite
             </button>
         </div>
         <div class="col-4 col-sm-3">
-            <button routerLink="cart" mat-raised-button class="btn btn-block" [matBadge]="cart"
+            <button routerLink="cart" mat-raised-button class="btn btn-block" [matBadge]="this.counter.cart"
                     matBadgeColor="primary">Cart
             </button>
         </div>
