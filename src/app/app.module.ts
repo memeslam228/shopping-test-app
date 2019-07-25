@@ -16,7 +16,7 @@ import {SinginComponent} from './auth/singin/singin.component';
 import {SingupComponent} from './auth/singup/singup.component';
 import {AuthService} from './Services/auth/auth.service';
 import {
-    MatAutocompleteModule,
+    MatAutocompleteModule, MatBadgeModule,
     MatButtonModule, MatCardModule,
     MatDialogModule,
     MatDividerModule, MatExpansionModule,
@@ -80,7 +80,8 @@ import { ItemPageComponent } from './item-page/item-page.component';
         MatDividerModule,
         MatExpansionModule,
         MatCardModule,
-        MatAutocompleteModule
+        MatAutocompleteModule,
+        MatBadgeModule
     ],
     providers: [AuthService],
     bootstrap: [AppComponent],

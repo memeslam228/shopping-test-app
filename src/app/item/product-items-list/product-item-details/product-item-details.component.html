@@ -11,12 +11,18 @@
             <p>
                 <b>Price:</b> {{ item.price }}
             </p>
+            <p>
+                <mat-form-field>
+                    <input type="number" class="form-control"
+                           matInput name="value" placeholder="How much?" #number (change)="numberChange(number.value)">
+                </mat-form-field>
+            </p>
         </mat-card-content>
         <mat-divider></mat-divider>
         <mat-card-actions>
             <div class="justify-content-around row">
                 <div class="col-4">
-                    <button (click)="onCart()" class="btn btn-block" mat-raised-button >
+                    <button (click)="onCart()" class="btn btn-block" mat-raised-button>
                         <mat-icon>shopping_cart</mat-icon>
                     </button>
                 </div>

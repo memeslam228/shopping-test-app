@@ -35,7 +35,7 @@ export class AuthService {
     singinUser(email: string, password: string) {
         this.afAuth.auth.signInWithEmailAndPassword(email, password)
             .then(
-                response => {
+                () => {
                     this.router.navigate(['/']);
                     this.afAuth.auth.currentUser.getIdToken()
                         .then(

@@ -45,10 +45,13 @@ export class CartDatabaseService {
             for (let i = 0; i < items.length; i++) {
                 // tslint:disable-next-line:prefer-for-of
                 for (let k = 0; k < this.idArray.length; k++) {
-                    if (items[i].key === this.idArray[k]) {
+                    const dbArray = this.idArray[k].split('|');
+                    if (items[i].key === dbArray[0]) {
                         if (itemms[0] === null) {
                             itemms[0] = items[i];
+                            itemms[0].number = dbArray[1];
                         } else {
+                            items[i].number = dbArray[1];
                             itemms.push(items[i]);
                         }
                     }
@@ -68,12 +71,18 @@ export class CartDatabaseService {
         } else {
             // tslint:disable-next-line:prefer-for-of
             for (let i = 0; i < this.idArray.length; i++) {
-                if (this.idArray[i] === id) {
+                const key = id.split('|');
+                const arrKey = this.idArray[i].split('|');
+                if (arrKey[0] === key[0]) {
+                    const newNumber: number = parseInt(arrKey[1], 10) + parseInt(key[1], 10);
+                    this.idArray[i] = key[0] + '|' + newNumber;
+                    this.cartarray.cart = JSON.stringify(this.idArray);
+                    this.dbObject.update({cart: this.cartarray.cart});
                     this.bool = true;
                 }
             }
             if (this.bool === true) {
-                return 'duplicate';
+                return 'nbrUpdate';
             } else {
                 this.idArray.push(id);
                 this.cartarray.cart = JSON.stringify(this.idArray);
@@ -93,7 +102,8 @@ export class CartDatabaseService {
             itemms = [null];
         }
         for (let i = 0; i < this.idArray.length; i++) {
-            if (this.idArray[i] === id) {
+            const key = this.idArray[i].split('|');
+            if (key[0] === id) {
                 this.idArray.splice(i, 1);
                 if (this.idArray[0]) {
                     this.cartarray.cart = JSON.stringify(this.idArray);

@@ -1,26 +1,31 @@
 <div *ngIf="item" class="py-3">
-  <mat-card class="example-card">
-    <img mat-card-image height="300px" width="300px" src="{{ item.photoUrl }}" alt="{{ item.name }}">
-    <mat-card-content>
-      <p>
-        <b>Name:</b> {{ item.name }}
-      </p>
-      <p class="description_p">
-        <b>Description:</b> {{ item.description }}
-      </p>
-      <p>
-        <b>Price:</b> {{ item.price }}
-      </p>
-    </mat-card-content>
-    <mat-divider></mat-divider>
-    <mat-card-actions>
-      <div class="justify-content-around row">
-        <div class="col-8">
-          <button (click)="deleteItem()" class="btn btn-block" mat-raised-button>
-            <mat-icon>delete</mat-icon>
-          </button>
-        </div>
-      </div>
-    </mat-card-actions>
-  </mat-card>
+    <mat-card class="example-card">
+        <img mat-card-image height="300px" width="300px" src="{{ item.photoUrl }}" alt="{{ item.name }}">
+        <mat-card-content>
+            <p>
+                <b>Name:</b> {{ item.name }}
+            </p>
+            <p class="description_p">
+                <b>Description:</b> {{ item.description }}
+            </p>
+            <div class="row">
+                <div class="col-6">
+                    <b>Price:</b> {{ item.price }}
+                </div>
+                <div class="col-6">
+                    <b>Number:</b> {{ item.number }}
+                </div>
+            </div>
+        </mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-card-actions>
+            <div class="justify-content-around row">
+                <div class="col-8">
+                    <button (click)="deleteItem()" class="btn btn-block" mat-raised-button>
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </mat-card-actions>
+    </mat-card>
 </div>

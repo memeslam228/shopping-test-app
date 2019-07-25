@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from './Services/auth/auth.service';
+import {BadgeCounterService} from './Services/badge/badge-counter.service';
 
 
 @Component({
@@ -9,9 +10,11 @@ import {AuthService} from './Services/auth/auth.service';
 })
 export class AppComponent implements OnInit {
     title = 'FirebaseTask';
+    cart = 0;
+    favourite = 0;
 
-    constructor(public authService: AuthService) {
-
+    constructor(public authService: AuthService, private counter: BadgeCounterService) {
+        this.favourite = this.counter.favouriteCount();
     }
 
     ngOnInit() {

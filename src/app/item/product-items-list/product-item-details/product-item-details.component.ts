@@ -20,10 +20,14 @@ export class ProductItemDetailsComponent implements OnInit {
     item: Item;
 
     bool: boolean;
+    number = '1';
 
     ngOnInit() {
     }
 
+    numberChange(smth: string) {
+        this.number = smth;
+    }
 
     onFavourite() {
         if (JSON.parse(localStorage.getItem('favourite-items'))) {
@@ -52,10 +56,12 @@ export class ProductItemDetailsComponent implements OnInit {
     }
 
     onCart() {
-        if (this.cart.addToCard(this.item.key) === 'done') {
+        if (this.cart.addToCard(this.item.key += '|' + this.number) === 'done') {
             this.toastr.success('Your item was added to Cart', 'Success!');
         } else {
-            this.toastr.warning('This item was added before');
+            this.toastr.info('Item was updated');
         }
+        const boolKey = this.item.key.split('|');
+        this.item.key = boolKey[0];
     }
 }

@@ -19,7 +19,9 @@ const appRoutes: Routes = [
     {path: 'favourites', component: ItemsFavouriteComponent},
     {path: 'cart', component: ItemsCartComponent},
     {path: 'item/:id', component: ItemPageComponent},
+    {path: '', redirectTo: '/products', pathMatch: 'full'},
     {path: '**', component: ProductItemsListComponent}
+
 ];
 
 @NgModule({

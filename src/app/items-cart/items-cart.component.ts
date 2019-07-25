@@ -15,7 +15,7 @@ import {CartDatabaseService} from '../Services/shopping-items/cart-database.serv
 })
 export class ItemsCartComponent implements OnInit {
     constructor(private authServ: AuthService, private db: AngularFireDatabase, private cartDb: CartDatabaseService) {
-        cartDb.setPath(this.authServ.getUid());
+        this.cartDb.setPath(this.authServ.getUid());
     }
 
     items: Item[] = [null];

@@ -19,10 +19,14 @@
             <button routerLink="products" mat-raised-button class="btn btn-block">Products</button>
         </div>
         <div class="col-4 col-sm-3">
-            <button routerLink="favourites" mat-raised-button class="btn btn-block">Favourite</button>
+            <button routerLink="favourites" mat-raised-button class="btn btn-block" [matBadge]="favourite"
+                    matBadgeColor="primary">Favourite
+            </button>
         </div>
         <div class="col-4 col-sm-3">
-            <button routerLink="cart" mat-raised-button class="btn btn-block">Cart</button>
+            <button routerLink="cart" mat-raised-button class="btn btn-block" [matBadge]="cart"
+                    matBadgeColor="primary">Cart
+            </button>
         </div>
         <div class="col-12 col-sm-3" *ngIf="authService.isAuthenticated()">
             <button routerLink="admin" mat-raised-button class="btn btn-block" color="primary">Admin</button>
@@ -31,4 +35,4 @@
 </div>
 <hr>
 <router-outlet></router-outlet>
-<app-footer ></app-footer>
+<app-footer></app-footer>

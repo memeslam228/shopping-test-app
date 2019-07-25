@@ -13,6 +13,7 @@ export class ItemsFavouriteDetailsComponent implements OnInit {
 
     @Input()
     item: Item;
+    number = '1';
 
     constructor(private favourite: ItemsFavouriteComponent, private toastr: ToastrService, private cart: ItemsCartComponent) {
     }
@@ -20,12 +21,18 @@ export class ItemsFavouriteDetailsComponent implements OnInit {
     ngOnInit() {
     }
 
+    numberChange(smth: string) {
+        this.number = smth;
+    }
+
     addCart() {
-        if (this.cart.addToCard(this.item.key) === 'done') {
+        if (this.cart.addToCard(this.item.key += '|' + this.number) === 'done') {
             this.toastr.success('Your item was added to Cart', 'Success!');
         } else {
-            this.toastr.warning('This item was added before');
+            this.toastr.info('Item was updated');
         }
+        const boolKey = this.item.key.split('|');
+        this.item.key = boolKey[0];
     }
 
     deleteItem() {
