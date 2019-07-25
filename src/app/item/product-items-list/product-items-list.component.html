@@ -17,7 +17,15 @@
             </form>
         </div>
         <div class="col-12 col-md-6">
-
+            <mat-form-field class="w-100">
+                <mat-label>Select an option</mat-label>
+                <mat-select [(value)]="selected" (valueChange)="subSelected()" >
+                    <mat-option value="A-Z">From A to Z</mat-option>
+                    <mat-option value="Z-A">From Z to A</mat-option>
+                    <mat-option value="fromEtoC">From expensive to cheap</mat-option>
+                    <mat-option value="fromCtoE">From cheap to expensive</mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
     </div>
     <div class="row">

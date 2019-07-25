@@ -10,7 +10,7 @@ import {BadgeCounterService} from './Services/badge/badge-counter.service';
 export class AppComponent implements OnInit {
     title = 'FirebaseTask';
 
-    constructor(public authService: AuthService, private counter: BadgeCounterService) {
+    constructor(public authService: AuthService, public counter: BadgeCounterService) {
     }
 
     ngOnInit() {

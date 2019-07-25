@@ -8,15 +8,23 @@
             <p class="description_p">
                 <b>Description:</b> {{ item.description }}
             </p>
-            <p>
-                <b>Price:</b> {{ item.price }}
-            </p>
-            <p>
-                <mat-form-field>
-                    <input type="number" class="form-control"
-                           matInput name="value" placeholder="How much?" #number (change)="numberChange(number.value)">
-                </mat-form-field>
-            </p>
+            <div class="row">
+                <div class="col-4 ">
+                    <p class="my-2">
+                        <b>Price:</b> {{ item.price }}
+                    </p>
+                </div>
+                <div class="col-8">
+                    <mat-form-field>
+                        <mat-label>Select quantity</mat-label>
+                        <mat-select [(value)]="number">
+                            <mat-option value="1">1</mat-option>
+                            <mat-option value="2">2</mat-option>
+                            <mat-option value="3">3</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
         </mat-card-content>
         <mat-divider></mat-divider>
         <mat-card-actions>

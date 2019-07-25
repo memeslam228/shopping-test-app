@@ -23,7 +23,7 @@ import {
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatProgressBarModule
+    MatProgressBarModule, MatSelectModule
 } from '@angular/material';
 import { ToastrModule } from 'ngx-toastr';
 import {ProductItemsListComponent} from './item/product-items-list/product-items-list.component';
@@ -81,7 +81,8 @@ import { ItemPageComponent } from './item-page/item-page.component';
         MatExpansionModule,
         MatCardModule,
         MatAutocompleteModule,
-        MatBadgeModule
+        MatBadgeModule,
+        MatSelectModule
     ],
     providers: [AuthService],
     bootstrap: [AppComponent],

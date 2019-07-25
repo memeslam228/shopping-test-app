@@ -27,8 +27,8 @@ export class ProductItemDetailsComponent implements OnInit {
     ngOnInit() {
     }
 
-    numberChange(smth: string) {
-        this.number = smth;
+    onSelect() {
+        console.log(this.number);
     }
 
     onFavourite() {

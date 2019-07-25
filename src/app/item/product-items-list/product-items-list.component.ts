@@ -15,7 +15,7 @@ export class ProductItemsListComponent implements OnInit {
     constructor(private itemCRUD: ItemCRUDService) {
     }
 
-
+    selected = 'smth';
     items: Item[];
     itemCtrl = new FormControl();
     filteredItems: Observable<Item[]>;
@@ -41,6 +41,61 @@ export class ProductItemsListComponent implements OnInit {
         const filterValue = value.toLowerCase();
 
         return this.items.filter(item => item.name.toLowerCase().includes(filterValue));
+    }
+
+    sortBtoS(a, b) {
+        if (a.price < b.price) {
+            return -1;
+        }
+        if (a.price > b.price) {
+            return 1;
+        }
+        return 0;
+    }
+
+    sortStoB(a, b) {
+        if (a.price > b.price) {
+            return -1;
+        }
+        if (a.price < b.price) {
+            return 1;
+        }
+        return 0;
+    }
+
+    sortAZ(a, b) {
+        if (a.name < b.name) {
+            return -1;
+        }
+        if (a.name > b.name) {
+            return 1;
+        }
+        return 0;
+    }
+
+    sortZA(a, b) {
+        if (a.name > b.name) {
+            return -1;
+        }
+        if (a.name < b.name) {
+            return 1;
+        }
+        return 0;
+    }
+
+    subSelected() {
+        if (this.selected === 'fromEtoC') {
+            this.items.sort(this.sortBtoS);
+        }
+        if (this.selected === 'fromCtoE') {
+            this.items.sort(this.sortStoB);
+        }
+        if (this.selected === 'A-Z') {
+            this.items.sort(this.sortAZ);
+        }
+        if (this.selected === 'Z-A') {
+            this.items.sort(this.sortZA);
+        }
     }
 
 
