@@ -1,6 +1,8 @@
 <div *ngIf="item" class="py-3">
     <mat-card class="example-card">
-        <img mat-card-image height="300px" width="300px" src="{{ item.photoUrl }}" alt="{{ item.name }}">
+        <div class="text-center">
+            <img mat-card-image class="mt-0 img-thumbnail" src="{{ item.photoUrl }}" alt="{{ item.name }}">
+        </div>
         <mat-card-content>
             <p>
                 <b>Name:</b> {{ item.name }}

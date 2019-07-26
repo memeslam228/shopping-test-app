@@ -1,14 +1,14 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-secondary">
-    <a href="#" class="navbar-brand">SHOPPING WEB APP</a>
+    <a routerLink="products" class="navbar-brand">SHOPPING WEB APP</a>
 
     <ng-template [ngIf]="!authService.isAuthenticated()">
-        <div class="navbar-nav ml-auto">
+        <div class="navbar-nav ml-md-auto">
             <a routerLink="signin" class="nav-item nav-link">Login</a>
             <a routerLink="signup" class="nav-item nav-link">Register</a>
         </div>
     </ng-template>
-    <div class="navbar-nav ml-auto" *ngIf="authService.isAuthenticated()">
-        <a href="#" class="navbar-brand">{{ authService.getEmail() }}</a>
+    <div class="navbar-nav ml-md-auto" *ngIf="authService.isAuthenticated()">
+        <a routerLink="admin" class="navbar-brand">{{ authService.getEmail() }}</a>
         <a class="nav-item nav-link" (click)="onLogout()" style="cursor: pointer;">Logout</a>
     </div>
 </nav>
@@ -28,7 +28,7 @@
                     matBadgeColor="primary">Cart
             </button>
         </div>
-        <div class="col-12 col-sm-3" *ngIf="authService.isAuthenticated()">
+        <div class="col-12 col-sm-3 mt-2 mt-sm-0" *ngIf="authService.isAuthenticated()">
             <button routerLink="admin" mat-raised-button class="btn btn-block" color="primary">Admin</button>
         </div>
     </div>
