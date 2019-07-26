@@ -1,6 +1,9 @@
 <div *ngIf="item" class="py-3">
     <mat-card class="example-card">
-        <img mat-card-image height="300px" width="300px" src="{{ item.photoUrl }}" alt="{{ item.name }}">
+        <div class="text-center">
+            <img mat-card-image class="img-thumbnail mt-0" src="{{ item.photoUrl }}"
+                 alt="{{ item.name }}">
+        </div>
         <mat-card-content>
             <p>
                 <b>Name:</b> {{ item.name }}
@@ -8,36 +11,40 @@
             <p class="description_p">
                 <b>Description:</b> {{ item.description }}
             </p>
-            <div class="row">
-                <div class="col-4 ">
-                    <p class="my-2">
-                        <b>Price:</b> {{ item.price }}
-                    </p>
-                </div>
-                <div class="col-8">
-                    <mat-form-field>
-                        <mat-label>Select quantity</mat-label>
-                        <mat-select [(value)]="number">
-                            <mat-option value="1">1</mat-option>
-                            <mat-option value="2">2</mat-option>
-                            <mat-option value="3">3</mat-option>
-                        </mat-select>
-                    </mat-form-field>
+            <div class="container">
+                <div class="row">
+                    <div class="col-4 ">
+                        <p class="my-2">
+                            <b>Price:</b> {{ item.price }}
+                        </p>
+                    </div>
+                    <div class="col-8">
+                        <mat-form-field class="w-100">
+                            <mat-label>Select quantity</mat-label>
+                            <mat-select [(value)]="number">
+                                <mat-option value="1">1</mat-option>
+                                <mat-option value="2">2</mat-option>
+                                <mat-option value="3">3</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
                 </div>
             </div>
         </mat-card-content>
         <mat-divider></mat-divider>
         <mat-card-actions>
-            <div class="justify-content-around row">
-                <div class="col-4">
-                    <button (click)="onCart()" class="btn btn-block" mat-raised-button>
-                        <mat-icon>shopping_cart</mat-icon>
-                    </button>
-                </div>
-                <div class="col-4">
-                    <button (click)="onFavourite()" class="btn btn-block" mat-raised-button>
-                        <mat-icon>favorite</mat-icon>
-                    </button>
+            <div class="container">
+                <div class="justify-content-around row">
+                    <div class="col-4">
+                        <button (click)="onCart()" class="btn btn-block" mat-raised-button>
+                            <mat-icon>shopping_cart</mat-icon>
+                        </button>
+                    </div>
+                    <div class="col-4">
+                        <button (click)="onFavourite()" class="btn btn-block" mat-raised-button>
+                            <mat-icon>favorite</mat-icon>
+                        </button>
+                    </div>
                 </div>
             </div>
         </mat-card-actions>

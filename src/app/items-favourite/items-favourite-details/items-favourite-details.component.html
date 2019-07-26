@@ -1,35 +1,37 @@
 <div *ngIf="item" class="py-3">
-  <mat-card class="example-card">
-    <img mat-card-image height="300px" width="300px" src="{{ item.photoUrl }}" alt="{{ item.name }}">
-    <mat-card-content>
-      <p>
-        <b>Name:</b> {{ item.name }}
-      </p>
-      <p class="description_p">
-        <b>Description:</b> {{ item.description }}
-      </p>
-      <p>
-        <b>Price:</b> {{ item.price }}
-      </p>
-      <mat-form-field>
-        <input type="number" class="form-control"
-               matInput name="value" placeholder="How much?" #number (change)="numberChange(number.value)">
-      </mat-form-field>
-    </mat-card-content>
-    <mat-divider></mat-divider>
-    <mat-card-actions>
-      <div class="justify-content-around row">
-        <div class="col-4">
-          <button (click)="addCart()" class="btn btn-block" mat-raised-button >
-            <mat-icon>shopping_cart</mat-icon>
-          </button>
+    <mat-card class="example-card">
+        <div class="text-center">
+            <img mat-card-image class="img-thumbnail mt-0" src="{{ item.photoUrl }}" alt="{{ item.name }}">
         </div>
-        <div class="col-4">
-          <button (click)="deleteItem()" class="btn btn-block" mat-raised-button>
-            <mat-icon>delete</mat-icon>
-          </button>
-        </div>
-      </div>
-    </mat-card-actions>
-  </mat-card>
+        <mat-card-content>
+            <p>
+                <b>Name:</b> {{ item.name }}
+            </p>
+            <p class="description_p">
+                <b>Description:</b> {{ item.description }}
+            </p>
+            <p>
+                <b>Price:</b> {{ item.price }}
+            </p>
+            <mat-form-field>
+                <input type="number" class="form-control"
+                       matInput name="value" placeholder="How much?" #number (change)="numberChange(number.value)">
+            </mat-form-field>
+        </mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-card-actions>
+            <div class="justify-content-around row">
+                <div class="col-4">
+                    <button (click)="addCart()" class="btn btn-block" mat-raised-button>
+                        <mat-icon>shopping_cart</mat-icon>
+                    </button>
+                </div>
+                <div class="col-4">
+                    <button (click)="deleteItem()" class="btn btn-block" mat-raised-button>
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </mat-card-actions>
+    </mat-card>
 </div>
