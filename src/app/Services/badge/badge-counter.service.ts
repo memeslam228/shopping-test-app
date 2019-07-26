@@ -32,7 +32,9 @@ export class BadgeCounterService {
 
     favouriteCount() {
         const array = JSON.parse(localStorage.getItem('favourite-items'));
-        this.favourite = array.length;
+        if (array != null) {
+            this.favourite = array.length;
+        }
     }
 
     getUid() {
